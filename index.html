@@ -1,0 +1,3519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>환경교육포털 Local</title>
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="icon" href="images/front/favicon/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="css/front/default.css">
+<link rel="stylesheet" href="css/front/font.css">
+<link rel="stylesheet" href="css/front/ui-layout.css">
+<link rel="stylesheet" href="css/front/ui-style.css">
+<link rel="stylesheet" href="css/front/ui-content.css">
+<link rel="stylesheet" href="css/front/ui-plugins.css">
+<style>
+body {padding-top:0!important;}
+.index-content {padding:20px 10px 50px;min-width:0;}
+h1 {font-size:26px;line-height:40px;font-weight:400;}
+.tabpanel h2 {padding-top:6rem;}
+.page-count {margin-top:20px;}
+.page-count:after {display:block;content:'';clear:both;}
+.page-count ul {float:right;text-align:right;font-size:14px;}
+.status {margin-top:20px;}
+.status:after {display:block;content:'';clear:both;}
+.status ul {font-size:0;float:right;}
+.status ul li {display:inline-block;margin:0 10px;font-size:14px;}
+[class^="label"] {position:relative;padding-left:20px;}
+[class^="label"]:after {display:block;content:'';position:absolute;left:0;top:4px;width:14px;height:14px;}
+.label01:after {background:transparent;border:1px solid #999;}
+.label02:after {background:#53b100;}
+.label03:after {background:#0142b3;}
+.label04:after {background:#e30101;animation:over_a both linear infinite 1.3s;}
+@keyframes over_a {
+	0% {opacity:1;}
+	40% {opacity:0.2;}
+	60% {opacity:0.2;}
+	100% {opacity:1;}
+}@keyframes over_b {
+	0% {background-color:var(--cuGreen);}
+	90% {background-color:var(--cuGreen);}
+	100% {background-color:var(--white);}
+}
+.col-table {margin-top:20px;}
+.col-table .link {text-decoration:underline;}
+.col-table [class*="label"] {display:inline-block;padding-left:0;}
+.col-table [class*="label"]:after {position:static;}
+.col-table {border-top:2px solid #070B25;margin:10px 0;}
+.col-table table {table-layout:fixed;}
+.col-table thead th {border-bottom:1px solid #D5D5D5;font-weight:500;text-align:center;padding:7px 5px;background-color:#F2F2F2;}
+.col-table thead th ~ th {border-left:1px solid #D5D5D5;}
+.col-table thead tr:last-child th {border-bottom:1px solid #070B25;}
+.col-table tbody td {position:relative;border-bottom:1px solid #E5E5E5;text-align:center;padding:7px 5px;background-color:var(--white);}
+.col-table tbody td ~ td {border-left:1px solid #EBEBEB;}
+.col-table tbody tr:nth-child(even) td {background-color:#F9F9F9;}
+.col-table tbody td.al {padding-left:20px;}
+.col-table tbody td.ar {padding-right:20px;}
+.col-table tbody tr.popup td:not(:empty) {background-color:#f5ebff;}
+.col-table tbody tr.del td {position:relative;}
+.col-table tbody tr.del td {color:var(--black9);text-decoration:line-through;}
+.col-table tbody tr td.current {background-color:var(--cate-blue);color:var(--white);}
+.col-table tbody tr:hover td {background-color:var(--green)!important;color:var(--white);}
+.col-table tbody tr.first td {border-top:1px solid #070B25;}
+.col-table .link {text-decoration:underline;text-align:left;}
+.col-table .tr td {border-top:1px solid #aaa;}
+.col-table .tr.active td {animation:over_b both linear 1.3s;}
+.scrollTop {position:fixed;right:10px;bottom:10px;width:40px;height:40px;background-color:var(--black);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+table tbody td a.vscodepath{position:absolute;right:0;top:50%;margin-top:-10px;margin-right:10px;display:inline-block;background:#53b100;width:20px;height:20px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTMyIDc5LjE1OTI4NCwgMjAxNi8wNC8xOS0xMzoxMzo0MCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QkFEOTc2RDhBRTAxMTFFQkE0NDhCQjBDRUJFRkVDQjgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkFEOTc2RDlBRTAxMTFFQkE0NDhCQjBDRUJFRkVDQjgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCQUQ5NzZENkFFMDExMUVCQTQ0OEJCMENFQkVGRUNCOCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCQUQ5NzZEN0FFMDExMUVCQTQ0OEJCMENFQkVGRUNCOCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu9291YAABD6SURBVHja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) center center no-repeat #333;border-radius:5px;background-size:15px;font-size:0}
+table tbody td a.popup {padding:0 5px;background-color:var(--red);color:var(--white);}
+table tbody td a.popup:not(:last-child) {margin-right:5px;}
+.tabpanel {display:none;}
+.tabpanel.active {display:block;}
+.index-wrap {padding-right:100px;}
+.sticky-menu {position:fixed;right:0;top:50%;transform:translateY(-50%);font-size:14px;color:var(--black3);width:100px;}
+.sticky-menu li a {display:block;padding:3px 0;transition:all 0.3s var(--cubic);}
+.sticky-menu li.active a {background-color:var(--green);color:var(--white)}
+
+@media screen and (max-width:1279px) {
+	h1 {font-size:16px;}
+	.top-sticky .tab ul li a {font-size:12px;}
+	table tbody td a.vscodepath{display:none;}
+	table tr > *:nth-child(6),
+	table tr > *:nth-child(7) {display:none;}
+	.sticky-menu {display:none;}
+	.index-wrap {padding-right:0;}
+}
+</style>
+</head>
+<body style="min-width:0;">
+	<div class="index-wrap">
+		<div class="index-content">
+			<div class="dummy">
+				<h1><a href="#">환경교육포털 퍼블리싱</a></h1>
+				<div class="readme">
+					<dl>
+						<dt>DESKTOP SIZE</dt>
+						<dd>1280 이상</dd>
+						<dd class="fc-red">@media screen and (min-width:1280px)</dd>
+					</dl>
+					<dl>
+						<dt>TABLET SIZE</dt>
+						<dd>1024 이상 1279 이하</dd>
+						<dd class="fc-red">@media screen and (min-width:1024px) and (max-width:1279px)</dd>
+					</dl>
+					<dl>
+						<dt>DESKTOP & TABLET SIZE</dt>
+						<dd>1024 이상</dd>
+						<dd class="fc-red">@media screen and (min-width:1024px)</dd>
+					</dl>
+					<dl>
+						<dt>TABLET & MOBILE SIZE</dt>
+						<dd>1279 이하</dd>
+						<dd class="fc-red">@media screen and (max-width:1279px)</dd>
+					</dl>
+					<dl>
+						<dt>MOBILE SIZE</dt>
+						<dd>1023 이하</dd>
+						<dd class="fc-red">@media screen and (max-width:1023px)</dd>
+					</dl>
+				</div>
+				<div class="status">
+					<ul>
+						<li><div class="label01">대기</div></li>
+						<li><div class="label02">완료</div></li>
+						<li><div class="label03">진행중</div></li>
+						<li><div class="label04">수정</div></li>
+					</ul>
+				</div>
+			</div>
+			<div class="table-wrap">
+				<h2>Component</h2>
+				<div class="col-table">
+					<table style="table-layout:fixed;width:100%;word-break:break-all;">
+						<colgroup class="pc-only">
+							<col style="width:150px;">
+							<col style="width:35%;">
+							<col style="width:35%;">
+							<col style="width:250px;">
+							<col style="width:80px;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>Depth01</th>
+								<th>Depth02</th>
+								<th>Depth02</th>
+								<th>페이지ID</th>
+								<th>상태</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="first">
+								<td>Layout</td>
+								<td>GNB</td>
+								<td></td>
+								<td><a href="layout-gnb.html" class="link" target="_blank">layout-gnb</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Sub Layout</td>
+								<td></td>
+								<td><a href="layout-sub.html" class="link" target="_blank">layout-sub</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>LNB 없을 경우</td>
+								<td><a href="layout-sub-nolnb.html" class="link" target="_blank">layout-sub-nolnb</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>Header, Footer 간소화 버젼</td>
+								<td><a href="layout-simple.html" class="link" target="_blank">layout-simple</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>HTML template</td>
+								<td></td>
+								<td><a href="template.html" class="link" target="_blank">template</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="first">
+								<td>컴포넌트</td>
+								<td>Form</td>
+								<td></td>
+								<td><a href="component_form.html" class="link" target="_blank">component_form</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Tag & Icon</td>
+								<td></td>
+								<td><a href="component_tag_icon.html" class="link" target="_blank">component_tag_icon</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>button</td>
+								<td></td>
+								<td><a href="component_button.html" class="link" target="_blank">component_button</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>description</td>
+								<td></td>
+								<td><a href="component_description.html" class="link" target="_blank">component_description</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>popup</td>
+								<td></td>
+								<td><a href="component_popup.html" class="link" target="_blank">component_popup</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>table</td>
+								<td></td>
+								<td><a href="component_table.html" class="link" target="_blank">component_table</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>tab</td>
+								<td></td>
+								<td><a href="component_tab.html" class="link" target="_blank">component_tab</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>list</td>
+								<td></td>
+								<td><a href="component_list.html" class="link" target="_blank">component_list</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Card list</td>
+								<td></td>
+								<td><a href="component_card.html" class="link" target="_blank">component_card</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>2차 수정</td>
+								<td><a href="component_card_new.html" class="link" target="_blank">component_card_new</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>약관</td>
+								<td></td>
+								<td><a href="component_terms.html" class="link" target="_blank">component_terms</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Content Etc</td>
+								<td></td>
+								<td><a href="component_etc.html" class="link" target="_blank">component_etc</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>검색조건</td>
+								<td></td>
+								<td><a href="component_filter.html" class="link" target="_blank">component_filter</a></td>
+								<td><div class="label03"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Datepicker</td>
+								<td></td>
+								<td><a href="component_flatpickr.html" class="link" target="_blank">component_flatpickr</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Check list</td>
+								<td></td>
+								<td><a href="component_check_list.html" class="link" target="_blank">component_check_list</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Loading spinner</td>
+								<td></td>
+								<td><a href="component_loading.html" class="link" target="_blank">component_loading</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="first">
+								<td>Error</td>
+								<td>404 <br> error layer popup <br> error layer alert popup <br> error window popup</td>
+								<td></td>
+								<td><a href="component_error.html" class="link" target="_blank">component_error</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>error window popup</td>
+								<td></td>
+								<td><a href="component_error_popup.html" class="link" target="_blank">component_error_popup</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>window popup</td>
+								<td></td>
+								<td><a href="component_window_popup.html" class="link" target="_blank">component_window_popup</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="first">
+								<td>email template</td>
+								<td></td>
+								<td></td>
+								<td><a href="component_email.html" class="link" target="_blank">component_email</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="first">
+								<td>nodata</td>
+								<td></td>
+								<td></td>
+								<td><a href="nodata.html" class="link" target="_blank">nodata</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="table-wrap pages">
+				<h2>Pages</h2>
+				<div class="col-table">
+					<table style="table-layout:fixed;width:100%;word-break:break-all;">
+						<colgroup class="pc-only">
+							<col style="width:150px;">
+							<col style="">
+							<col style="">
+							<col style="">
+							<col style="">
+							<col style="width:120px;">
+							<col style="width:80px;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>Depth01</th>
+								<th>Depth02</th>
+								<th>Depth03</th>
+								<th>Depth04</th>
+								<th>페이지ID</th>
+								<th>popup</th>
+								<th>상태</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr class="first">
+								<td>메인페이지</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-1-01-001.html" class="link" target="_blank">UI-C-1-01-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>내 주변 환경교육 시설 팝업 지도</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-1-01-004.html" class="link" target="_blank">UI-C-1-01-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- 회원 서비스 -->
+							
+							<tr class="first">
+								<td>회원 서비스</td>
+								<td>통합검색</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-1-02-001.html" class="link" target="_blank">UI-C-1-02-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>로그인</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-1-04-003.html" class="link" target="_blank">UI-C-1-04-003</a></td>
+								<td>
+									<a href="UI-C-1-04-003.html#layer-popup01" class="popup" target="_blank">01</a>
+									<a href="UI-C-1-04-003.html#layer-popup02" class="popup" target="_blank">02</a>
+									<a href="UI-C-1-04-003.html#layer-popup03" class="popup" target="_blank">03</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>디지털 원패스 윈도우팝업</td>
+								<td></td>
+								<td><a href="layer-onepass.html" class="link" target="_blank">layer-onepass.html</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>회원가입</td>
+								<td>회원가입 유형 선택</td>
+								<td></td>
+								<td><a href="UI-C-1-05-001.html" class="link" target="_blank">UI-C-1-05-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>약관동의</td>
+								<td>개인회원</td>
+								<td><a href="UI-C-1-05-002.html" class="link" target="_blank">UI-C-1-05-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>본인인증</td>
+								<td>개인회원 > 개인회원</td>
+								<td><a href="UI-C-1-05-003.html" class="link" target="_blank">UI-C-1-05-003</a></td>
+								<td>
+									<a href="UI-C-1-05-003.html#layer-popup04" class="popup" target="_blank">04</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>회원정보입력</td>
+								<td>개인회원</td>
+								<td><a href="UI-C-1-05-005.html" class="link" target="_blank">UI-C-1-05-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>어린이회원</td>
+								<td><a href="UI-C-1-05-006.html" class="link" target="_blank">UI-C-1-05-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>회원정보입력</td>
+								<td>기관회원</td>
+								<td><a href="UI-C-1-05-007.html" class="link" target="_blank">UI-C-1-05-007</a></td>
+								<td>
+									<a href="UI-C-1-05-007.html#layer-popup05" class="popup" target="_blank">05</a>
+									<a href="UI-C-1-05-007.html#layer-popup06" class="popup" target="_blank">06</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>가입완료</td>
+								<td>개인회원</td>
+								<td><a href="UI-C-1-05-010.html" class="link" target="_blank">UI-C-1-05-010</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>기관회원</td>
+								<td><a href="UI-C-1-05-011.html" class="link" target="_blank">UI-C-1-05-011</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>아이디 찾기</td>
+								<td>아이디 찾기</td>
+								<td></td>
+								<td><a href="UI-C-1-06-001.html" class="link" target="_blank">UI-C-1-06-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>아이디 찾기 결과</td>
+								<td></td>
+								<td><a href="UI-C-1-06-002.html" class="link" target="_blank">UI-C-1-06-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>비밀번호 찾기</td>
+								<td>비밀번호 찾기</td>
+								<td></td>
+								<td><a href="UI-C-1-07-001.html" class="link" target="_blank">UI-C-1-07-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>비밀번호 변경</td>
+								<td></td>
+								<td><a href="UI-C-1-07-002.html" class="link" target="_blank">UI-C-1-07-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- //회원 서비스 -->
+							<!-- Footer -->
+							<tr class="first">
+								<td>Footer</td>
+								<td>사이트맵</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-1-08-001.html" class="link" target="_blank">UI-C-1-08-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>이용약관</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-1-09-001.html" class="link" target="_blank">UI-C-1-09-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>저작권정책</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-1-11-001.html" class="link" target="_blank">UI-C-1-11-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- //Footer -->
+							<!-- 프로그램&middot;콘텐츠 -->
+							<tr class="first">
+								<td>프로그램&middot;콘텐츠</td>
+								<td>프로그램</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-3-01-001.html" class="link" target="_blank">UI-C-3-01-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-3-01-003.html" class="link" target="_blank">UI-C-3-01-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>콘텐츠</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-3-02-001.html" class="link" target="_blank">UI-C-3-02-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-3-02-003.html" class="link" target="_blank">UI-C-3-02-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>교구</td>
+								<td>환경교육 교구 대여</td>
+								<td>대여신청 (리스트)</td>
+								<td><a href="UI-C-3-03-001.html" class="link" target="_blank">UI-C-3-03-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>대여신청 (상세)</td>
+								<td><a href="UI-C-3-03-002.html" class="link" target="_blank">UI-C-3-03-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청하기 이후 정보 확인 페이지</td>
+								<td><a href="UI-C-3-03-006.html" class="link" target="_blank">UI-C-3-03-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청완료 페이지</td>
+								<td><a href="UI-C-3-03-007.html" class="link" target="_blank">UI-C-3-03-007</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>환경교육 교구 공동구매</td>
+								<td>목록</td>
+								<td><a href="UI-C-3-04-001.html" class="link" target="_blank">UI-C-3-04-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-3-04-002.html" class="link" target="_blank">UI-C-3-04-002</a></td>
+								<td>
+									<a href="UI-C-3-04-002.html#layer-popup09" class="popup" target="_blank">09</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청하기 이후 정보 확인 페이지</td>
+								<td><a href="UI-C-3-04-006.html" class="link" target="_blank">UI-C-3-04-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청완료 페이지</td>
+								<td><a href="UI-C-3-04-007.html" class="link" target="_blank">UI-C-3-04-007</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>우수환경도서</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-3-05-001.html" class="link" target="_blank">UI-C-3-05-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-3-05-003.html" class="link" target="_blank">UI-C-3-05-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육용어사전</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-3-06-001.html" class="link" target="_blank">UI-C-3-06-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-3-06-002.html" class="link" target="_blank">UI-C-3-06-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>프로그램ㆍ콘텐츠</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-3-07-001.html" class="link" target="_blank">UI-C-3-07-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- //프로그램&middot;콘텐츠 -->
+							<!-- 전문가&middot;강사 -->
+							<tr class="first">
+								<td>전문가&middot;강사</td>
+								<td>환경교육사</td>
+								<td>제도소개</td>
+								<td></td>
+								<td><a href="UI-C-4-01-001.html" class="link" target="_blank">UI-C-4-01-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>환경교육사 현황</td>
+								<td></td>
+								<td><a href="UI-C-4-02-001.html" class="link" target="_blank">UI-C-4-02-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>양성기관</td>
+								<td></td>
+								<td><a href="UI-C-4-03-001.html" class="link" target="_blank">UI-C-4-03-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>국가환경교육지원단</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-4-04-001.html" class="link" target="_blank">UI-C-4-04-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육 전문가 풀</td>
+								<td>전문가 풀 현황 및 섭외요청</td>
+								<td>목록</td>
+								<td><a href="UI-C-4-05-001.html" class="link" target="_blank">UI-C-4-05-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-4-05-003.html" class="link" target="_blank">UI-C-4-05-003</a></td>
+								<td><a href="UI-C-4-05-003.html#layer-popup08" class="popup" target="_blank">08</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>요청서 작성 페이지</td>
+								<td><a href="UI-C-4-05-005.html" class="link" target="_blank">UI-C-4-05-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>작성 완료</td>
+								<td><a href="UI-C-4-05-006.html" class="link" target="_blank">UI-C-4-05-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>가입 신청</td>
+								<td>소개 페이지</td>
+								<td><a href="UI-C-4-06-001.html" class="link" target="_blank">UI-C-4-06-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>약관동의</td>
+								<td><a href="UI-C-4-06-002.html" class="link" target="_blank">UI-C-4-06-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청정보입력</td>
+								<td><a href="UI-C-4-06-003.html" class="link" target="_blank">UI-C-4-06-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청완료</td>
+								<td><a href="UI-C-4-06-004.html" class="link" target="_blank">UI-C-4-06-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- //전문가&middot;강사 -->
+							<!-- 교육기관&middot;시설 -->
+							<tr class="first">
+								<td>교육기관&middot;시설</td>
+								<td>지역 환경교육센터</td>
+								<td>국가 환경교육센터</td>
+								<td></td>
+								<td><a href="UI-C-5-01-001.html" class="link" target="_blank">UI-C-5-01-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>광역 환경교육센터</td>
+								<td></td>
+								<td><a href="UI-C-5-02-001.html" class="link" target="_blank">UI-C-5-02-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>기초 환경교육센터</td>
+								<td></td>
+								<td><a href="UI-C-5-03-001.html" class="link" target="_blank">UI-C-5-03-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경부 소속&middot;산하기관</td>
+								<td>외청&middot;소속기관</td>
+								<td></td>
+								<td><a href="UI-C-5-04-001.html" class="link" target="_blank">UI-C-5-04-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>산하기관</td>
+								<td></td>
+								<td><a href="UI-C-5-05-001.html" class="link" target="_blank">UI-C-5-05-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>지역환경교육센터</td>
+								<td>기관 현황</td>
+								<td></td>
+								<td><a href="UI-C-5-06-001.html" class="link" target="_blank">UI-C-5-06-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>지정 신청</td>
+								<td></td>
+								<td><a href="" class="link" target="_blank"></a></td>
+								<td></td>
+								<td><div class="label01"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>민간 환경교육단체</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-5-08-001.html" class="link" target="_blank">UI-C-5-08-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육사 양성기관</td>
+								<td>양성기관 현황</td>
+								<td></td>
+								<td><a href="UI-C-5-09-001.html" class="link" target="_blank">UI-C-5-09-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>환경교육사 안내</td>
+								<td></td>
+								<td><a href="UI-C-5-10-001.html" class="link" target="_blank">UI-C-5-10-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육시설</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-5-11-001.html" class="link" target="_blank">UI-C-5-11-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>유아환경교육관</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-5-12-001.html" class="link" target="_blank">UI-C-5-12-001</a></td>
+								<td>
+									<a href="UI-C-5-12-001.html#layer-popup30" class="popup" target="_blank">30</a>
+									<a href="UI-C-5-12-001.html#layer-popup31" class="popup" target="_blank">31</a>
+									<a href="UI-C-5-12-001.html#layer-popup32" class="popup" target="_blank">32</a>
+									<a href="UI-C-5-12-001.html#layer-popup33" class="popup" target="_blank">33</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>푸름이 이동환경교실</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-5-13-001.html" class="link" target="_blank">UI-C-5-13-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- //교육기관&middot;시설 -->
+							<!-- 참여&middot;신청 -->
+							<tr class="first">
+								<td>참여&middot;신청</td>
+								<td>우수환경교육 프로그램 지정</td>
+								<td>우수환경교육 프로그램 지정현황</td>
+								<td>목록</td>
+								<td><a href="UI-C-6-01-001.html" class="link" target="_blank">UI-C-6-01-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-6-01-002.html" class="link" target="_blank">UI-C-6-01-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>지정신청</td>
+								<td>소개 및 신청루트 페이지</td>
+								<td><a href="UI-C-6-02-001.html" class="link" target="_blank">UI-C-6-02-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>약관동의</td>
+								<td><a href="UI-C-6-02-002.html" class="link" target="_blank">UI-C-6-02-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청정보 확인 및 증빙자료 등록</td>
+								<td><a href="UI-C-6-02-003.html" class="link" target="_blank">UI-C-6-02-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 프로그램 우수성</td>
+								<td><a href="UI-C-6-02-004.html" class="link" target="_blank">UI-C-6-02-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 프로그램 운영관리</td>
+								<td><a href="UI-C-6-02-005.html" class="link" target="_blank">UI-C-6-02-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 프로그램 평가</td>
+								<td><a href="UI-C-6-02-006.html" class="link" target="_blank">UI-C-6-02-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 지도자의 자격 및 배치</td>
+								<td><a href="UI-C-6-02-007.html" class="link" target="_blank">UI-C-6-02-007</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 안전관리</td>
+								<td><a href="UI-C-6-02-008.html" class="link" target="_blank">UI-C-6-02-008</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 체크리스트 (공통)</td>
+								<td><a href="UI-C-6-02-009-1.html" class="link" target="_blank">UI-C-6-02-009-1</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 체크리스트 (실내 or 실외 / 숙박)</td>
+								<td><a href="UI-C-6-02-009-2.html" class="link" target="_blank">UI-C-6-02-009-2</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 체크리스트 (실내 or 실외 / 비숙박)</td>
+								<td><a href="UI-C-6-02-009-3.html" class="link" target="_blank">UI-C-6-02-009-3</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성 &gt; 체크리스트 체크리스트 (실내 or 실외 / 비대면)</td>
+								<td><a href="UI-C-6-02-010.html" class="link" target="_blank">UI-C-6-02-010</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청완료</td>
+								<td><a href="UI-C-6-02-011.html" class="link" target="_blank">UI-C-6-02-011</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>컨설팅신청</td>
+								<td>소개 및 신청</td>
+								<td><a href="UI-C-6-03-001.html" class="link" target="_blank">UI-C-6-03-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>약관동의</td>
+								<td><a href="UI-C-6-03-002.html" class="link" target="_blank">UI-C-6-03-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청</td>
+								<td><a href="UI-C-6-03-003.html" class="link" target="_blank">UI-C-6-03-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청완료</td>
+								<td><a href="UI-C-6-03-004.html" class="link" target="_blank">UI-C-6-03-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>체험 환경교육 프로그램 지원</td>
+								<td>공모신청</td>
+								<td>목록</td>
+								<td><a href="UI-C-6-04-001.html" class="link" target="_blank">UI-C-6-04-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-6-04-002.html" class="link" target="_blank">UI-C-6-04-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>사업분야  <br>
+									- 생애주기 환경교육 지원사업 <br> 
+									- 종교인 환경교육 지원사업 <br>
+									- 학습공동체 지원사업
+								</td>
+								<td>약관동의</td>
+								<td><a href="UI-C-6-04-003.html" class="link" target="_blank">UI-C-6-04-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청정보</td>
+								<td><a href="UI-C-6-04-004.html" class="link" target="_blank">UI-C-6-04-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>기관역량</td>
+								<td><a href="UI-C-6-04-005.html" class="link" target="_blank">UI-C-6-04-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>사업수행계획</td>
+								<td><a href="UI-C-6-04-006.html" class="link" target="_blank">UI-C-6-04-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램정보</td>
+								<td><a href="UI-C-6-04-007.html" class="link" target="_blank">UI-C-6-04-007</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>전문강사 확보</td>
+								<td><a href="UI-C-6-04-008.html" class="link" target="_blank">UI-C-6-04-008</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>안전과리 적정성</td>
+								<td><a href="UI-C-6-04-009.html" class="link" target="_blank">UI-C-6-04-009</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>사업분야 <br>
+									- 그린캠퍼스 지원사업
+								</td>
+								<td>신청정보</td>
+								<td><a href="UI-C-6-04-010.html" class="link" target="_blank">UI-C-6-04-010</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>소요예산</td>
+								<td><a href="UI-C-6-04-011.html" class="link" target="_blank">UI-C-6-04-011</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>사업분야 <br>
+									- 교사학습공동체 지원사업
+								</td>
+								<td>신청정보</td>
+								<td><a href="UI-C-6-04-012.html" class="link" target="_blank">UI-C-6-04-012</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>소요예산</td>
+								<td><a href="UI-C-6-04-013.html" class="link" target="_blank">UI-C-6-04-013</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>사업분야 <br>
+									- 환경동아리 지원사업
+								</td>
+								<td>신청정보</td>
+								<td><a href="UI-C-6-04-014.html" class="link" target="_blank">UI-C-6-04-014</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>운영개요</td>
+								<td><a href="UI-C-6-04-015.html" class="link" target="_blank">UI-C-6-04-015</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>소요예산</td>
+								<td><a href="UI-C-6-04-016.html" class="link" target="_blank">UI-C-6-04-016</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>사업분야 <br>
+									- 환경교육 우수학교 지원사업
+								</td>
+								<td>신청정보</td>
+								<td><a href="UI-C-6-04-017.html" class="link" target="_blank">UI-C-6-04-017</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>소요예산</td>
+								<td><a href="UI-C-6-04-018.html" class="link" target="_blank">UI-C-6-04-018</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청완료</td>
+								<td><a href="UI-C-6-04-019.html" class="link" target="_blank">UI-C-6-04-019</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>국가 환경교육</td>
+								<td>유아환경교육관 교육 신청</td>
+								<td>목록</td>
+								<td><a href="UI-C-6-05-001.html" class="link" target="_blank">UI-C-6-05-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-6-05-003.html" class="link" target="_blank">UI-C-6-05-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>약관동의</td>
+								<td><a href="UI-C-6-05-004.html" class="link" target="_blank">UI-C-6-05-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td><a href="UI-C-6-05-005.html" class="link" target="_blank">UI-C-6-05-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>완료</td>
+								<td><a href="UI-C-6-05-006.html" class="link" target="_blank">UI-C-6-05-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>푸름이 이동환경교실 교육 신청</td>
+								<td>목록</td>
+								<td><a href="UI-C-6-06-001.html" class="link" target="_blank">UI-C-6-06-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세 - 일일교육</td>
+								<td><a href="UI-C-6-06-003.html" class="link" target="_blank">UI-C-6-06-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>약관동의 -일일교육</td>
+								<td><a href="UI-C-6-06-004.html" class="link" target="_blank">UI-C-6-06-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록 - 일일교육</td>
+								<td><a href="UI-C-6-06-005.html" class="link" target="_blank">UI-C-6-06-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세 - 지속교육</td>
+								<td><a href="UI-C-6-06-006.html" class="link" target="_blank">UI-C-6-06-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>약관동의 - 지속교육</td>
+								<td><a href="UI-C-6-06-008.html" class="link" target="_blank">UI-C-6-06-008</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록 - 지속교육</td>
+								<td><a href="UI-C-6-06-009.html" class="link" target="_blank">UI-C-6-06-009</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>완료</td>
+								<td><a href="UI-C-6-06-010.html" class="link" target="_blank">UI-C-6-06-010</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>사회환경교육기관 지정</td>
+								<td>소개 및 신청하기</td>
+								<td></td>
+								<td><a href="UI-C-6-15-001.html" class="link" target="_blank">UI-C-6-15-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>약관동의</td>
+								<td></td>
+								<td><a href="UI-C-6-15-002.html" class="link" target="_blank">UI-C-6-15-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>신청정보</td>
+								<td></td>
+								<td><a href="UI-C-6-15-003.html" class="link" target="_blank">UI-C-6-15-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>운영계획 개요</td>
+								<td></td>
+								<td><a href="UI-C-6-15-004.html" class="link" target="_blank">UI-C-6-15-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>추진일정</td>
+								<td></td>
+								<td><a href="UI-C-6-15-005.html" class="link" target="_blank">UI-C-6-15-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>교육전문인력 현황</td>
+								<td></td>
+								<td><a href="UI-C-6-15-006.html" class="link" target="_blank">UI-C-6-15-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>교육프로그램 보유현황</td>
+								<td></td>
+								<td><a href="UI-C-6-15-007.html" class="link" target="_blank">UI-C-6-15-007</a></td>
+								<td>
+									<a href="UI-C-6-15-007.html#layer-popup50" class="popup" target="_blank">50</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>교육시설 및 설비 현황</td>
+								<td></td>
+								<td><a href="UI-C-6-15-009.html" class="link" target="_blank">UI-C-6-15-009</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>신청완료</td>
+								<td></td>
+								<td><a href="UI-C-6-15-010.html" class="link" target="_blank">UI-C-6-15-010</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육시설 예약</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-6-08-001.html" class="link" target="_blank">UI-C-6-08-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세(대여형)</td>
+								<td></td>
+								<td><a href="UI-C-6-08-003.html" class="link" target="_blank">UI-C-6-08-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세(숙박형)</td>
+								<td></td>
+								<td><a href="UI-C-6-08-008.html" class="link" target="_blank">UI-C-6-08-008</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세(예약신청방법 = 외부 사이트)</td>
+								<td></td>
+								<td><a href="UI-C-6-08-011.html" class="link" target="_blank">UI-C-6-08-011</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>예약신청 버튼 클릭 후 정보입력/확인 페이지</td>
+								<td></td>
+								<td><a href="UI-C-6-08-006.html" class="link" target="_blank">UI-C-6-08-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>예약신청 완료 페이지</td>
+								<td></td>
+								<td><a href="UI-C-6-08-007.html" class="link" target="_blank">UI-C-6-08-007</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경동아리</td>
+								<td>전체 커뮤니티(탭)</td>
+								<td></td>
+								<td><a href="UI-C-6-09-001.html" class="link" target="_blank">UI-C-6-09-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>커뮤니티 개설</td>
+								<td><a href="UI-C-6-09-002.html" class="link" target="_blank">UI-C-6-09-002</a></td>
+								<td>
+									<a href="UI-C-6-09-002.html#layer-popup10" class="popup" target="_blank">10</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>커뮤니티 상세</td>
+								<td><a href="UI-C-6-09-004.html" class="link" target="_blank">UI-C-6-09-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>커뮤니티 상세 - (탭) 상세 - 댓글</td>
+								<td><a href="UI-C-6-09-012.html" class="link" target="_blank">UI-C-6-09-012</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>커뮤니티 상세 - 등록</td>
+								<td><a href="UI-C-6-09-013.html" class="link" target="_blank">UI-C-6-09-013</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>커뮤니티 상세 - 수정</td>
+								<td><a href="UI-C-6-09-014.html" class="link" target="_blank">UI-C-6-09-014</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>커뮤니티 설정(탭), 회원관리(탭), 가입대기회원(탭)</td>
+								<td><a href="UI-C-6-09-005.html" class="link" target="_blank">UI-C-6-09-005</a></td>
+								<td>
+									<a href="UI-C-6-09-005.html#layer-popup10" class="popup" target="_blank">10</a>
+									<a href="UI-C-6-09-005.html#layer-popup11" class="popup" target="_blank">11</a>
+									<a href="UI-C-6-09-005.html#layer-popup12" class="popup" target="_blank">12</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>나의 환경동아리(탭)</td>
+								<td></td>
+								<td><a href="UI-C-6-09-010.html" class="link" target="_blank">UI-C-6-09-010</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>초록작당소 안내&middot;대관</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-6-10-001.html" class="link" target="_blank">UI-C-6-10-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육 제안</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-6-11-001.html" class="link" target="_blank">UI-C-6-11-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세 - 답변대기</td>
+								<td></td>
+								<td><a href="UI-C-6-11-003.html" class="link" target="_blank">UI-C-6-11-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세 - 답변완료</td>
+								<td></td>
+								<td><a href="UI-C-6-11-004.html" class="link" target="_blank">UI-C-6-11-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td></td>
+								<td><a href="UI-C-6-11-005.html" class="link" target="_blank">UI-C-6-11-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td></td>
+								<td><a href="UI-C-6-11-006.html" class="link" target="_blank">UI-C-6-11-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>공모전&middot;이벤트</td>
+								<td>공모전</td>
+								<td>목록</td>
+								<td><a href="UI-C-6-12-001.html" class="link" target="_blank">UI-C-6-12-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-6-12-003.html" class="link" target="_blank">UI-C-6-12-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청</td>
+								<td><a href="UI-C-6-12-004.html" class="link" target="_blank">UI-C-6-12-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청 페이지, 분류 : 환경방학 일기장 프로젝트</td>
+								<td><a href="UI-C-6-12-005.html" class="link" target="_blank">UI-C-6-12-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>이벤트</td>
+								<td>목록</td>
+								<td><a href="UI-C-6-13-001.html" class="link" target="_blank">UI-C-6-13-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-6-13-003.html" class="link" target="_blank">UI-C-6-13-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>설문조사</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-6-14-001.html" class="link" target="_blank">UI-C-6-14-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-6-14-002.html" class="link" target="_blank">UI-C-6-14-002</a></td>
+								<td><a href="UI-C-6-14-002.html#layer-popup13" class="popup" target="_blank">13</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- //참여&middot;신청 -->
+							<!-- 알림&middot;문의 -->
+							<tr class="first">
+								<td>알림&middot;문의</td>
+								<td>새소식</td>
+								<td>공지사항</td>
+								<td>목록</td>
+								<td><a href="UI-C-7-01-001.html" class="link" target="_blank">UI-C-7-01-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-7-01-004.html" class="link" target="_blank">UI-C-7-01-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>채용정보</td>
+								<td>목록</td>
+								<td><a href="UI-C-7-02-001.html" class="link" target="_blank">UI-C-7-02-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-7-02-003.html" class="link" target="_blank">UI-C-7-02-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>언론보도</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-7-03-001.html" class="link" target="_blank">UI-C-7-03-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>웹진</td>
+								<td>환경교육 NOW</td>
+								<td>목록</td>
+								<td><a href="UI-C-7-04-001.html" class="link" target="_blank">UI-C-7-04-001</a></td>
+								<td>
+									<a href="UI-C-7-04-001.html#layer-popup07" class="popup" target="_blank">07</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-7-04-002.html" class="link" target="_blank">UI-C-7-04-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>탄소중립 환경교육</td>
+								<td>목록</td>
+								<td><a href="UI-C-7-05-001.html" class="link" target="_blank">UI-C-7-05-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-7-05-002.html" class="link" target="_blank">UI-C-7-05-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>탄소중립 헬프데스크</td>
+								<td>헬프데스크 소개</td>
+								<td></td>
+								<td><a href="UI-C-7-06-001.html" class="link" target="_blank">UI-C-7-06-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>환경교육 헬프 신청</td>
+								<td>목록</td>
+								<td><a href="UI-C-7-07-001.html" class="link" target="_blank">UI-C-7-07-001</a></td>
+								<td>
+									<a href="UI-C-7-07-001.html#layer-popup08" class="popup" target="_blank">08</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세-답변대기</td>
+								<td><a href="UI-C-7-07-003.html" class="link" target="_blank">UI-C-7-07-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세-답변완료</td>
+								<td><a href="UI-C-7-07-004.html" class="link" target="_blank">UI-C-7-07-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td><a href="UI-C-7-07-005.html" class="link" target="_blank">UI-C-7-07-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-7-07-006.html" class="link" target="_blank">UI-C-7-07-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>고객센터</td>
+								<td>1:1문의</td>
+								<td>목록</td>
+								<td><a href="UI-C-7-08-001.html" class="link" target="_blank">UI-C-7-08-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세-답변대기</td>
+								<td><a href="UI-C-7-08-003.html" class="link" target="_blank">UI-C-7-08-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세-답변완료</td>
+								<td><a href="UI-C-7-08-004.html" class="link" target="_blank">UI-C-7-08-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td><a href="UI-C-7-08-005.html" class="link" target="_blank">UI-C-7-08-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-7-08-006.html" class="link" target="_blank">UI-C-7-08-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>플랫폼 개선 제안</td>
+								<td>목록</td>
+								<td><a href="UI-C-7-09-001.html" class="link" target="_blank">UI-C-7-09-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세-답변대기</td>
+								<td><a href="UI-C-7-09-003.html" class="link" target="_blank">UI-C-7-09-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세-답변완료</td>
+								<td><a href="UI-C-7-09-004.html" class="link" target="_blank">UI-C-7-09-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td><a href="UI-C-7-09-005.html" class="link" target="_blank">UI-C-7-09-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-7-09-006.html" class="link" target="_blank">UI-C-7-09-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>자주하는 질문</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-7-10-001.html" class="link" target="_blank">UI-C-7-10-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- //알림&middot;문의 -->
+							<!-- 소개&middot;안내 -->
+							<tr class="first">
+								<td>소개&middot;안내</td>
+								<td>국가환경교육센터</td>
+								<td>인사말</td>
+								<td></td>
+								<td><a href="UI-C-8-01-001.html" class="link" target="_blank">UI-C-8-01-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>조직 및 업무</td>
+								<td></td>
+								<td><a href="UI-C-8-02-001.html" class="link" target="_blank">UI-C-8-02-001</a></td>
+								<td><a href="UI-C-8-02-001.html#layer-popup44" class="popup" target="_blank">44</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>비전 및 목표</td>
+								<td></td>
+								<td><a href="UI-C-8-03-001.html" class="link" target="_blank">UI-C-8-03-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>찾아오시는 길</td>
+								<td></td>
+								<td><a href="UI-C-8-04-001.html" class="link" target="_blank">UI-C-8-04-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>지역환경교육센터 소개</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-8-05-001.html" class="link" target="_blank">UI-C-8-05-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육 제도&middot;사업</td>
+								<td>리스트</td>
+								<td></td>
+								<td><a href="UI-C-8-06-001.html" class="link" target="_blank">UI-C-8-06-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>국가환경교육</td>
+								<td>환경교육도시</td>
+								<td><a href="UI-C-환경교육도시.html" class="link" target="_blank">UI-C-환경교육도시</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>국가환경교육지원단</td>
+								<td><a href="UI-C-8-06-024.html" class="link" target="_blank">UI-C-8-06-024</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>환경교육주간</td>
+								<td><a href="UI-C-환경교육주간.html" class="link" target="_blank">UI-C-환경교육주간</a></td>
+								<td></td>
+								<td><div class="label01"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>환경교육실태조사</td>
+								<td><a href="UI-C-환경교육실태조사.html" class="link" target="_blank">UI-C-환경교육실태조사</a></td>
+								<td></td>
+								<td><div class="label01"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>사회환경교육</td>
+								<td>사회환경교육프로그램</td>
+								<td><a href="UI-C-8-06-011.html" class="link" target="_blank">UI-C-8-06-011</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>우수환경교육프로그램</td>
+								<td><a href="UI-C-8-06-017.html" class="link" target="_blank">UI-C-8-06-017</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>우수환경도서</td>
+								<td><a href="UI-C-8-06-022.html" class="link" target="_blank">UI-C-8-06-022</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>자연환경연수원 지원</td>
+								<td><a href="UI-C-8-06-025.html" class="link" target="_blank">UI-C-8-06-025</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>사회환경교육기관</td>
+								<td><a href="UI-C-8-06-027.html" class="link" target="_blank">UI-C-8-06-027</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>학교환경교육</td>
+								<td>유아환경교육관</td>
+								<td><a href="UI-C-8-06-002.html" class="link" target="_blank">UI-C-8-06-002</a></td>
+								<td>
+									<a href="UI-C-8-06-002.html#layer-popup30" class="popup" target="_blank">30</a>
+									<a href="UI-C-8-06-002.html#layer-popup31" class="popup" target="_blank">31</a>
+									<a href="UI-C-8-06-002.html#layer-popup32" class="popup" target="_blank">32</a>
+									<a href="UI-C-8-06-002.html#layer-popup33" class="popup" target="_blank">33</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>푸름이 이동환경교실</td>
+								<td><a href="UI-C-8-06-005.html" class="link" target="_blank">UI-C-8-06-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>환경 동아리</td>
+								<td><a href="UI-C-환경_동아리.html" class="link" target="_blank">UI-C-환경_동아리</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>꿈꾸는 환경학교</td>
+								<td><a href="UI-C-꿈꾸는_환경학교.html" class="link" target="_blank">UI-C-꿈꾸는_환경학교</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>환경일기 쓰기 및 방학 프로젝트</td>
+								<td><a href="UI-C-8-06-023.html" class="link" target="_blank">UI-C-8-06-023</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>환경교육우수학교</td>
+								<td><a href="UI-C-8-06-028.html" class="link" target="_blank">UI-C-8-06-028</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="del">
+								<td></td>
+								<td></td>
+								<td>환경교육 교구대여</td>
+								<td></td>
+								<td><a href="UI-C-8-06-007.html" class="link" target="_blank">UI-C-8-06-007</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="del">
+								<td></td>
+								<td></td>
+								<td>학교 환경교육지원사업</td>
+								<td></td>
+								<td><a href="UI-C-8-06-009.html" class="link" target="_blank">UI-C-8-06-009</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="del">
+								<td></td>
+								<td></td>
+								<td>환경교육사</td>
+								<td></td>
+								<td><a href="UI-C-8-06-014.html" class="link" target="_blank">UI-C-8-06-014</a></td>
+								<td>
+									<a href="UI-C-8-06-014.html#layer-popup43" class="popup" target="_blank">43</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="del">
+								<td></td>
+								<td></td>
+								<td>환경교육한마당</td>
+								<td></td>
+								<td><a href="UI-C-8-06-026.html" class="link" target="_blank">UI-C-8-06-026</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육 정책자료실</td>
+								<td>사업운영자료</td>
+								<td>목록</td>
+								<td><a href="UI-C-8-07-001.html" class="link" target="_blank">UI-C-8-07-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-8-07-002.html" class="link" target="_blank">UI-C-8-07-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>전문자료</td>
+								<td>목록</td>
+								<td><a href="UI-C-8-07-003.html" class="link" target="_blank">UI-C-8-07-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-8-07-004.html" class="link" target="_blank">UI-C-8-07-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>기타자료</td>
+								<td>목록</td>
+								<td><a href="UI-C-8-07-005.html" class="link" target="_blank">UI-C-8-07-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-8-07-006.html" class="link" target="_blank">UI-C-8-07-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>국제 환경교육</td>
+								<td>한중일 환경교육 네트워크</td>
+								<td></td>
+								<td><a href="UI-C-8-08-001.html" class="link" target="_blank">UI-C-8-08-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>분양사이트 소개</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-8-11-001.html" class="link" target="_blank">UI-C-8-11-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>국가환경교육 통합 플랫폼</td>
+								<td>소개</td>
+								<td></td>
+								<td><a href="UI-C-8-09-001.html" class="link" target="_blank">UI-C-8-09-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>이용방법</td>
+								<td></td>
+								<td><a href="UI-C-8-10-001.html" class="link" target="_blank">UI-C-8-10-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<!-- 소개&middot;안내 -->
+							<!-- 마이페이지 -->
+							<tr class="first">
+								<td>마이페이지</td>
+								<td>내 정보(개인)</td>
+								<td>내 정보 수정</td>
+								<td>상세/수정</td>
+								<td><a href="UI-C-9-01-001.html" class="link" target="_blank">UI-C-9-01-001</a></td>
+								<td><a href="UI-C-9-01-001.html#layer-popup27" class="popup" target="_blank">27</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>회원탈퇴 - 디지털원패스</td>
+								<td><a href="UI-C-9-01-003.html" class="link" target="_blank">UI-C-9-01-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>회원탈퇴</td>
+								<td><a href="UI-C-9-01-004.html" class="link" target="_blank">UI-C-9-01-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>탈퇴완료</td>
+								<td><a href="UI-C-9-01-005.html" class="link" target="_blank">UI-C-9-01-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>비밀번호 변경</td>
+								<td></td>
+								<td><a href="UI-C-9-01-006.html" class="link" target="_blank">UI-C-9-01-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>기관정보(기관)</td>
+								<td>기관정보 확인/수정</td>
+								<td>상세/수정</td>
+								<td><a href="UI-C-9-02-001.html" class="link" target="_blank">UI-C-9-02-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>기관 담당자 설정</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-03-001.html" class="link" target="_blank">UI-C-9-03-001</a></td>
+								<td><a href="UI-C-9-03-001.html#layer-popup14" class="popup" target="_blank">14</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-03-002.html" class="link" target="_blank">UI-C-9-03-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육 교구</td>
+								<td>대여 이력</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-04-001.html" class="link" target="_blank">UI-C-9-04-001</a></td>
+								<td>
+									<a href="UI-C-9-04-001.html#layer-popup15" class="popup" target="_blank">15</a>
+									<a href="UI-C-9-04-001.html#layer-popup16" class="popup" target="_blank">16</a>
+									<a href="UI-C-9-04-001.html#layer-popup17" class="popup" target="_blank">17</a>
+									<a href="UI-C-9-04-001.html#layer-popup18" class="popup" target="_blank">18</a>
+									<a href="UI-C-9-04-001.html#layer-popup19" class="popup" target="_blank">19</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-04-004.html" class="link" target="_blank">UI-C-9-04-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>공동구매 신청 이력</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-05-001.html" class="link" target="_blank">UI-C-9-05-001</a></td>
+								<td>
+									<a href="UI-C-9-05-001.html#layer-popup17" class="popup" target="_blank">17</a>
+									<a href="UI-C-9-05-001.html#layer-popup18" class="popup" target="_blank">18</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-05-002.html" class="link" target="_blank">UI-C-9-05-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육 전문가 풀</td>
+								<td>전문가 정보</td>
+								<td>전문가 이력 정보 상세 (탭), 쪽지 수신 및 정보 공개 설정 (탭)</td>
+								<td><a href="UI-C-9-06-001.html" class="link" target="_blank">UI-C-9-06-001</a></td>
+								<td>
+									<a href="UI-C-9-06-001.html#layer-popup19" class="popup" target="_blank">19</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-9-06-002.html" class="link" target="_blank">UI-C-9-06-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>전문가 섭외 관리</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-07-001.html" class="link" target="_blank">UI-C-9-07-001</a></td>
+								<td>
+									<a href="UI-C-9-07-001.html#layer-popup23" class="popup" target="_blank">23</a>
+									<a href="UI-C-9-07-001.html#layer-popup22" class="popup" target="_blank">22</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세-강의요청서(탭), 전문가 정보(탭)</td>
+								<td><a href="UI-C-9-07-003.html" class="link" target="_blank">UI-C-9-07-003</a></td>
+								<td><a href="UI-C-9-07-003.html#layer-popup08" class="popup" target="_blank">08</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>전문가 요청 관리</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-08-001.html" class="link" target="_blank">UI-C-9-08-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-08-002.html" class="link" target="_blank">UI-C-9-08-002</a></td>
+								<td><a href="UI-C-9-08-002.html#layer-popup08" class="popup" target="_blank">08</a></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>정보변경이력</td>
+								<td></td>
+								<td><a href="UI-C-9-09-001.html" class="link" target="_blank">UI-C-9-09-001</a></td>
+								<td>
+									<a href="UI-C-9-09-001.html#layer-popup24" class="popup" target="_blank">24</a>
+									<a href="UI-C-9-09-001.html#layer-popup25" class="popup" target="_blank">25</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>관심 전문가</td>
+								<td></td>
+								<td><a href="UI-C-9-10-001.html" class="link" target="_blank">UI-C-9-10-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>우수환경교육 프로그램 지정 관리</td>
+								<td>지정관리</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-11-001.html" class="link" target="_blank">UI-C-9-11-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>신청정보 확인 및 증빙자료 등록</td>
+								<td><a href="UI-C-9-11-003.html" class="link" target="_blank">UI-C-9-11-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>프로그램 정보 작성</td>
+								<td><a href="UI-C-9-11-004.html" class="link" target="_blank">UI-C-9-11-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>(탭)지정내역 </td>
+								<td><a href="UI-C-9-12-001.html" class="link" target="_blank">UI-C-9-12-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>(탭)변경내역-목록</td>
+								<td><a href="UI-C-9-12-002.html" class="link" target="_blank">UI-C-9-12-002</a></td>
+								<td>
+									<a href="UI-C-9-12-002.html#layer-popup27" class="popup" target="_blank">27</a>
+									<a href="UI-C-9-12-002.html#layer-popup28" class="popup" target="_blank">28</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>(탭)변경내역-등록</td>
+								<td><a href="UI-C-9-12-004.html" class="link" target="_blank">UI-C-9-12-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>(탭)변경내역-상세</td>
+								<td><a href="UI-C-9-12-005.html" class="link" target="_blank">UI-C-9-12-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>(탭)운영결과-목록</td>
+								<td><a href="UI-C-9-12-006.html" class="link" target="_blank">UI-C-9-12-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>(탭)운영결과-등록</td>
+								<td><a href="UI-C-9-12-007.html" class="link" target="_blank">UI-C-9-12-007</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>(탭)이행확인</td>
+								<td><a href="UI-C-9-12-008.html" class="link" target="_blank">UI-C-9-12-008</a></td>
+								<td>
+									<a href="UI-C-9-12-008.html#layer-popup30" class="popup" target="_blank">30</a>
+									<a href="UI-C-9-12-008.html#layer-popup31" class="popup" target="_blank">31</a>
+									<a href="UI-C-9-12-008.html#layer-popup32" class="popup" target="_blank">32</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>(탭)이의신청</td>
+								<td><a href="UI-C-9-12-011.html" class="link" target="_blank">UI-C-9-12-011</a></td>
+								<td>
+									<a href="UI-C-9-12-011.html#layer-popup33" class="popup" target="_blank">33</a>
+									<a href="UI-C-9-12-011.html#layer-popup34" class="popup" target="_blank">34</a>
+									<a href="UI-C-9-12-011.html#layer-popup35" class="popup" target="_blank">35</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>컨설팅관리</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-13-001.html" class="link" target="_blank">UI-C-9-13-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세-(탭)신청정보, (탭)컨설팅평가</td>
+								<td><a href="UI-C-9-13-002.html" class="link" target="_blank">UI-C-9-13-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>체험 환경교육 프로그램 지원 관리</td>
+								<td>공모 신청내역</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-14-001.html" class="link" target="_blank">UI-C-9-14-001</a></td>
+								<td>
+									<a href="UI-C-9-14-001.html#layer-popup28" class="popup" target="_blank">28</a>
+									<a href="UI-C-9-14-001.html#layer-popup29" class="popup" target="_blank">29</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-14-003.html" class="link" target="_blank">UI-C-9-14-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>교부 신청</td>
+								<td>신청안내</td>
+								<td><a href="UI-C-9-15-001.html" class="link" target="_blank">UI-C-9-15-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>목록</td>
+								<td><a href="UI-C-9-15-002.html" class="link" target="_blank">UI-C-9-15-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									- 생애주기 환경교육 지원사업  <br>
+									- 종교인 환경교육 지원사업  <br>
+									- 학습공동체 지원사업 
+								</td>
+								<td><a href="UI-C-9-15-003.html" class="link" target="_blank">UI-C-9-15-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									- 환경동아리 지원사업
+								</td>
+								<td><a href="UI-C-9-15-004.html" class="link" target="_blank">UI-C-9-15-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									- 그린캠퍼스 지원사업
+								</td>
+								<td><a href="UI-C-9-15-005.html" class="link" target="_blank">UI-C-9-15-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									- 교사학습공동체 지원사업
+								</td>
+								<td><a href="UI-C-9-15-006.html" class="link" target="_blank">UI-C-9-15-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									- 환경교육 우수학교 지원사업
+								</td>
+								<td><a href="UI-C-9-15-007.html" class="link" target="_blank">UI-C-9-15-007</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>사업보고관리</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-16-001.html" class="link" target="_blank">UI-C-9-16-001</a></td>
+								<td>
+									<a href="UI-C-9-16-001.html#layer-popup36" class="popup" target="_blank">36</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td><a href="UI-C-9-16-003.html" class="link" target="_blank">UI-C-9-16-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-16-006.html" class="link" target="_blank">UI-C-9-16-006</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>컨설팅대상내역</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-17-001.html" class="link" target="_blank">UI-C-9-17-001</a></td>
+								<td>
+									<a href="UI-C-9-17-001.html#layer-popup37" class="popup" target="_blank">37</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>정산관리</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-18-001.html" class="link" target="_blank">UI-C-9-18-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-18-002.html" class="link" target="_blank">UI-C-9-18-002</a></td>
+								<td>
+									<a href="UI-C-9-18-002.html#layer-popup38" class="popup" target="_blank">38</a>
+									<a href="UI-C-9-18-002.html#layer-popup39" class="popup" target="_blank">39</a>
+									<a href="UI-C-9-18-002.html#layer-popup40" class="popup" target="_blank">40</a>
+									<a href="UI-C-9-18-002.html#layer-popup41" class="popup" target="_blank">41</a>
+									<a href="UI-C-9-18-002.html#layer-popup42" class="popup" target="_blank">42</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>정산보고관리</td>
+								<td>상세</td>
+								<td><a href="UI-C-9-19-001.html" class="link" target="_blank">UI-C-9-19-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td><a href="UI-C-9-19-002.html" class="link" target="_blank">UI-C-9-19-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>사업포기신청</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-20-001.html" class="link" target="_blank">UI-C-9-20-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td><a href="UI-C-9-20-002.html" class="link" target="_blank">UI-C-9-20-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>국가 환경교육 신청 이력</td>
+								<td>유아환경교육관 교육 신청 이력</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-21-001.html" class="link" target="_blank">UI-C-9-21-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-21-002.html" class="link" target="_blank">UI-C-9-21-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>푸름이 이동환경교실 교육 신청 이력</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-22-001.html" class="link" target="_blank">UI-C-9-22-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(일일교육)</td>
+								<td><a href="UI-C-9-22-002.html" class="link" target="_blank">UI-C-9-22-002</a></td>
+								<td>
+									<a href="#none" class="popup" onclick="popupCenter({url: 'UI-C-9-22-004.html', title: '2023 푸름이 이동환경교실 만족도조사',w:1280, h:600});">WP1</a>
+									<a href="#none" class="popup" onclick="popupCenter({url: 'UI-C-9-22-005.html', title: '2023 푸름이 이동환경교실 만족도조사 완료',w:442, h:389});">WP2</a>
+									<a href="UI-C-9-22-002.html#layer-popup45" class="popup" target="_blank">45</a>
+									<a href="UI-C-9-22-002.html#layer-popup46" class="popup" target="_blank">46</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(지속교육)</td>
+								<td><a href="UI-C-9-22-003.html" class="link" target="_blank">UI-C-9-22-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>[설문참여] 새창 팝업 (교사용)</td>
+								<td><a href="UI-C-9-22-004.html" class="link" target="_blank">UI-C-9-22-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>[설문참여] 완료</td>
+								<td><a href="UI-C-9-22-005.html" class="link" target="_blank">UI-C-9-22-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>사회환경교육기관 지정 관리</td>
+								<td>신청내역</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-38-001.html" class="link" target="_blank">UI-C-9-38-001</a></td>
+								<td>
+									<a href="UI-C-9-38-001.html#layer-popup51" class="popup" target="_blank">51</a>
+									<a href="UI-C-9-38-001.html#layer-popup52" class="popup" target="_blank">52</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-38-003.html" class="link" target="_blank">UI-C-9-38-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>지정내역(탭), 변경내역(탭)</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-39-001.html" class="link" target="_blank">UI-C-9-39-001</a></td>
+								<td>
+									<a href="UI-C-9-38-001.html#layer-popup53" class="popup" target="_blank">53</a>
+									<a href="UI-C-9-38-001.html#layer-popup54" class="popup" target="_blank">54</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>변경내역(탭)</td>
+								<td>등록</td>
+								<td><a href="UI-C-9-39-004.html" class="link" target="_blank">UI-C-9-39-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경교육시설 예약 이력</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-9-24-001.html" class="link" target="_blank">UI-C-9-24-001</a></td>
+								<td>
+									<a href="UI-C-9-24-001.html#layer-popup20" class="popup" target="_blank">20</a>
+									<a href="UI-C-9-24-001.html#layer-popup21" class="popup" target="_blank">21</a>
+									<a href="UI-C-9-24-001.html#layer-popup47" class="popup" target="_blank">47</a>
+									<a href="UI-C-9-24-001.html#layer-popup48" class="popup" target="_blank">48</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-9-24-003.html" class="link" target="_blank">UI-C-9-24-003</a></td>
+								<td>
+									<a href="UI-C-9-24-003.html#layer-popup49" class="popup" target="_blank">49</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>환경학습 수료/자격 이력</td>
+								<td>(탭)수료정보, (탭)자격정보</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-25-001.html" class="link" target="_blank">UI-C-9-25-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수료 상세</td>
+								<td><a href="UI-C-9-25-002.html" class="link" target="_blank">UI-C-9-25-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>자격 상세</td>
+								<td><a href="UI-C-9-25-004.html" class="link" target="_blank">UI-C-9-25-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>나의 환경동아리</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-9-26-001.html" class="link" target="_blank">UI-C-9-26-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-9-26-002.html" class="link" target="_blank">UI-C-9-26-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>커뮤니티 설정(탭), 회원관리(탭), 가입대기회원(탭)</td>
+								<td><a href="UI-C-9-26-003.html" class="link" target="_blank">UI-C-9-26-003</a></td>
+								<td>
+									<a href="UI-C-9-26-003.html#layer-popup10" class="popup" target="_blank">10</a>
+									<a href="UI-C-9-26-003.html#layer-popup11" class="popup" target="_blank">11</a>
+									<a href="UI-C-9-26-003.html#layer-popup12" class="popup" target="_blank">12</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>공모전 참여 이력</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-9-27-001.html" class="link" target="_blank">UI-C-9-27-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-9-27-002.html" class="link" target="_blank">UI-C-9-27-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td></td>
+								<td><a href="UI-C-9-27-003.html" class="link" target="_blank">UI-C-9-27-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>상세(환경방학 일기장 프로젝트)</td>
+								<td></td>
+								<td><a href="UI-C-9-27-004.html" class="link" target="_blank">UI-C-9-27-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>수정(환경방학 일기장 프로젝트)</td>
+								<td></td>
+								<td><a href="UI-C-9-27-005.html" class="link" target="_blank">UI-C-9-27-005</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>설문조사 참여 이력</td>
+								<td>목록</td>
+								<td></td>
+								<td><a href="UI-C-9-28-001.html" class="link" target="_blank">UI-C-9-28-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="del">
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td></td>
+								<td><a href="UI-C-500-040.html" class="link" target="_blank">UI-C-500-040</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>내 문의 내역</td>
+								<td>1:1문의 내역</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-29-001.html" class="link" target="_blank">UI-C-9-29-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(답변대기)</td>
+								<td><a href="UI-C-9-29-002.html" class="link" target="_blank">UI-C-9-29-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(답변완료)</td>
+								<td><a href="UI-C-9-29-003.html" class="link" target="_blank">UI-C-9-29-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-9-29-004.html" class="link" target="_blank">UI-C-9-29-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>환경교육 제안 내역</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-30-001.html" class="link" target="_blank">UI-C-9-30-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(답변대기)</td>
+								<td><a href="UI-C-9-30-002.html" class="link" target="_blank">UI-C-9-30-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(답변완료)</td>
+								<td><a href="UI-C-9-30-003.html" class="link" target="_blank">UI-C-9-30-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-9-30-004.html" class="link" target="_blank">UI-C-9-30-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>탄소중립 환경교육 헬프 데스크 신청 내역</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-31-001.html" class="link" target="_blank">UI-C-9-31-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(답변대기)</td>
+								<td><a href="UI-C-9-31-002.html" class="link" target="_blank">UI-C-9-31-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(답변완료)</td>
+								<td><a href="UI-C-9-31-003.html" class="link" target="_blank">UI-C-9-31-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-9-31-004.html" class="link" target="_blank">UI-C-9-31-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>플랫폼 개선 제안 내역</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-32-001.html" class="link" target="_blank">UI-C-9-32-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(답변대기)</td>
+								<td><a href="UI-C-9-32-002.html" class="link" target="_blank">UI-C-9-32-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세(답변완료)</td>
+								<td><a href="UI-C-9-32-003.html" class="link" target="_blank">UI-C-9-32-003</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-9-32-004.html" class="link" target="_blank">UI-C-9-32-004</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>알림 내역</td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-9-33-001.html" class="link" target="_blank">UI-C-9-33-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>쪽지함</td>
+								<td>받은 쪽지함</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-34-001.html" class="link" target="_blank">UI-C-9-34-001</a></td>
+								<td>
+									<a href="UI-C-9-34-001.html#layer-popup08" class="popup" target="_blank">08</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-34-002.html" class="link" target="_blank">UI-C-9-34-002</a></td>
+								<td>
+									<a href="UI-C-9-34-002.html#layer-popup08" class="popup" target="_blank">08</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>보낸 쪽지함</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-35-001.html" class="link" target="_blank">UI-C-9-35-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>상세</td>
+								<td><a href="UI-C-9-35-002.html" class="link" target="_blank">UI-C-9-35-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>분양 사이트 관리</td>
+								<td>분양 사이트 신청</td>
+								<td>목록</td>
+								<td><a href="UI-C-9-36-001.html" class="link" target="_blank">UI-C-9-36-001</a></td>
+								<td>
+									<a href="UI-C-9-36-001.html#layer-popup26" class="popup" target="_blank">26</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>등록</td>
+								<td><a href="UI-C-9-36-002.html" class="link" target="_blank">UI-C-9-36-002</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>수정</td>
+								<td><a href="UI-C-9-36-003.html" class="link" target="_blank">UI-C-9-36-003</a></td>
+								<td>
+									<a href="UI-C-9-36-003.html#layer-popup26" class="popup" target="_blank">26</a>
+								</td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>분양 사이트 운영</td>
+								<td></td>
+								<td><a href="UI-C-9-37-001.html" class="link" target="_blank">UI-C-9-37-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+							<tr class="first">
+								<td>분양 사이트 메인</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><a href="UI-C-10-01-001.html" class="link" target="_blank">UI-C-10-01-001</a></td>
+								<td></td>
+								<td><div class="label02"></div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<ul class="sticky-menu"></ul>
+	</div>
+	<a href="#" class="scrollTop">Top</a>
+	<script src="js/front/jquery-3.6.3.min.js"></script>
+	<script src="js/front/ui-script.js"></script>
+	<script>
+
+		$(function() {
+			var filePathVsCode = function (){
+				var current_pathAll = window.location.href;
+				var current_path = window.location.pathname;
+				var indexurl = current_path.split('/').pop();
+				current_path = current_path.slice(0, current_path.indexOf(indexurl));
+				var tdurl = $('tr td a');
+				var vsCode = '';
+				// tdurl.each(function (){
+				// 	var url = $(this).attr('href');
+				// 	if ($(this).text().length) {
+				// 		if ($(this).hasClass('link')) {
+				// 			if (current_pathAll.indexOf('http://127.0.0.1:5500') === 0) { //vscode liveServer port
+				// 				vsCode = "vscode://file///C:/KEEP_PORTAL_HTML/"; //source file 경로
+				// 				var vsCodeHref = '<a class="vscodepath" href=' + '"' + vsCode + current_path + url + '"></a>';
+				// 				$(this).after(vsCodeHref);
+				// 			}
+
+				// 		}
+				// 	}	
+					
+				// })
+				if (current_pathAll.indexOf('http://127.0.0.1:5500') === 0) { //vscode liveServer port
+					var link = document.querySelector("link[rel~='icon']");
+					if (!link) {
+						link = document.createElement('link');
+						link.rel = 'icon';
+						document.getElementsByTagName('head')[0].appendChild(link);
+					}
+					link.href = 'images/front/favicon/favicon-local.png';
+				}
+				if (current_pathAll.indexOf('http://192.168.0.6:9008/') === 0) { //vscode liveServer port
+					document.title = "환경교육포털 SERVER"
+				}
+			}();
+			// tabContent.init();
+		});
+		$(function() {
+			var stickyMenu = function () {
+				const tableWrap = $('.table-wrap');
+				const stickyMenu = $('.sticky-menu')
+				const menuTD = tableWrap.find('.col-table td:first-child');
+				menuTD.each(function (index){
+					if ($(this).text().length){
+						const par = $(this).closest('tr')
+						const thisID = `id-${index}`
+						par.attr('id',thisID)
+						const text = $(this).text();
+						stickyMenu.append(`<li><a href="#${thisID}">${text}</a></li>`);
+					}
+				})
+				if ($WINDOW_MODE === DESKTOP || $WINDOW_MODE === TABLET) {
+					$(window).scroll(function () {
+						const windowScrollTop = $(window).scrollTop();
+						$('.col-table tr[id]').each(function (index){
+							const offsetTop = $(this).offset().top;
+							// console.log(offsetTop)
+							if (windowScrollTop >= offsetTop) {
+								$(this).addClass('active');
+								const thisID = $(this).attr('id');
+								stickyMenu.find('a[href="#' + thisID + '"]').closest('li').addClass('active');
+							} else {
+								$(this).removeClass('active');
+								const thisID = $(this).attr('id');
+								stickyMenu.find('a[href="#' + thisID + '"]').closest('li').removeClass('active');
+							}
+						});
+					})
+				}
+			}();
+		});
+
+		$(function() {
+			$('.table-wrap.pages a.link').on('click',function () {
+				const text = $(this).text();
+				localStorage.setItem('status',text);
+				const par = $(this).closest('td')
+				$('td').removeClass('current');
+				par.addClass('current');
+			})
+			$('.table-wrap.pages a.link').each(function () {
+				const text = localStorage.getItem('status')
+				if($(this).text() === text){
+					$(this).closest('td').addClass('current');
+				}
+			})
+		});
+
+				
+		// const tabContent = {
+		// 	init : function () {
+		// 		$tabList = $('.tab-list li');
+		// 		$trigger = $tabList.find('button, a') //toggle;
+		// 		$tabActive = '';
+		// 		tabContent.click();
+		// 		tabContent.afterLoad();
+		// 		tabContent.pageLoad();
+		// 	},
+		// 	click : function () {
+		// 		$trigger.on('click', function (){
+		// 			const $parent = $(this).closest('li');
+		// 			// 선택 탭 활성화
+		// 			$parent.addClass('active');
+		// 			$(this).attr({
+		// 				// 'tabindex': '0',
+		// 				'aria-selected': 'true'
+		// 			}).focus();
+		// 			// 기존 탭 비활성화
+		// 			$parent.siblings().removeClass('active');
+		// 			$parent.siblings().find('button, a').attr({
+		// 				// 'tabindex': '-1',
+		// 				'aria-selected': 'false'
+		// 			});
+		// 			// 선택된 연관된 탭 패널 활성화
+		// 			// $('#' + $(this).attr('aria-controls')).attr('tabindex', '0').addClass('active')
+		// 			$('#' + $(this).attr('aria-controls')).addClass('active')
+		// 			// 기존 탭 패널 비활성화
+		// 			// $('#' + $(this).attr('aria-controls')).siblings('.tabpanel').attr('tabindex', '-1').removeClass('active');
+		// 			$('#' + $(this).attr('aria-controls')).siblings('.tabpanel').removeClass('active');
+		// 			tabContent.localSave();
+
+		// 			var thisOffsetTop = $(this.hash).offset().top - $('.tab.ml20').outerHeight();
+		// 			$('html').animate({ scrollTop : thisOffsetTop }, 300 );
+		// 		})
+		// 	},
+		// 	afterLoad  : function () {
+		// 		$trigger.each(function (){
+		// 			const $parent = $(this).closest('li');
+		// 			if ($parent.hasClass('active')) {
+		// 				$(this).attr({
+		// 					// 'tabindex': '0',
+		// 					'aria-selected': 'true'
+		// 				})
+		// 				// $('#' + $(this).attr('aria-controls')).attr('tabindex', '0').addClass('active');
+		// 				$('#' + $(this).attr('aria-controls')).addClass('active');
+		// 			} else {
+		// 				$(this).attr({
+		// 					// 'tabindex': '-1',
+		// 					'aria-selected': 'false'
+		// 				});
+		// 				// $('#' + $(this).attr('aria-controls')).attr('tabindex', '-1').removeClass('active');
+		// 				$('#' + $(this).attr('aria-controls')).removeClass('active');
+		// 			}
+		// 		});
+		// 	},
+		// 	localSave : function () {
+		// 		$tabList.each(function () {
+		// 			if ($(this).hasClass('active')) {
+		// 				$tabActive = $(this).index(); 
+		// 				localStorage.setItem('status',$tabActive);
+		// 			}
+		// 		})
+				
+		// 	},
+		// 	pageLoad : function () {
+		// 		$tabList.siblings('').removeClass('active');
+		// 		$tabList.eq(localStorage.getItem('status',$tabActive)).addClass('active');
+		// 		tabContent.afterLoad()
+		// 	}
+		// }
+
+	</script>
+</body>
+</html>
